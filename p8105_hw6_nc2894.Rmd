@@ -4,3 +4,36 @@ output: github_document
 author: Na Yun CHo
 ---
 
+```{r}
+library(tidyverse)
+library(modelr)
+```
+
+
+# Problem 2 
+### load data, propose a regression model
+```{r}
+birthweight = read.csv("./data/Birthweight.csv") %>%
+  mutate(babysex = as.factor(babysex),
+         frace = as.factor(frace),
+         malform = as.factor(malform),
+         mrace = as.factor(mrace)) %>%
+  drop_na()
+
+model_1 = lm(bwt ~ delwt + ppbmi, data = birthweight)
+
+birthweight %>% 
+add_residuals(model_1) %>%
+ggplot(aes(x = resid)) +
+geom_density() +
+labs(x = "residuals", title = "density plot of model residuals")
+
+
+birthweight %>%
+add_residuals(model_1) %>%
+add_predictions(model_1) %>%
+ggplot(aes(x = resid, y = pred)) +
+geom_point() +
+labs(x = "residuals", y = "fitted values", title = "plot of model residuals against fitted values")
+```
+
