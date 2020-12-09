@@ -1,0 +1,6 @@
+---
+title: "Homework 6"
+output: github_document
+author: Na Yun CHo
+---
+
