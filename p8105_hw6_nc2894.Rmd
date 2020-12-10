@@ -36,6 +36,7 @@ ggplot(aes(x = resid, y = pred)) +
 geom_point() +
 labs(x = "residuals", y = "fitted values", title = "plot of model residuals against fitted values")
 ```
+
 Comment on my model-building process: To propose a regression model for birthweight, I decided to look at the factors of 'delwt(mother's weight at delivery)' and 'ppbmi(mother's pre-pregnancy bmi)' based on previous knowledge. I guessed that mother's weight at delivery would be highly associated with the baby's birthweight and I have learned previously that mother's pre-pregnancy bmi could be associated with the baby's birthweight and future weights. 
 To observe the distribution of the residuals of this proposed regression model, I created a density plot of the model residuals. The density plot showed a fairly normal-looking distribution that may be slightly left skewed but there wasn't extreme skewness in the distribution. Thus, I proceeded to use this regression model.
 
@@ -73,7 +74,9 @@ cv_df2 %>%
   ggplot(aes(x = model, y = rmse)) + 
   geom_violin()
 ```
+
 From the violin plots, I can see that the third model is the best regression model because it has the lowest rmse values than the other two models. The third model is the one using head circumference, length, sex, and all their interactions. 
+
 
 # Problem 3
 ### load data
@@ -117,7 +120,8 @@ weather_df2 =
 rsquared_graph = ggplot(data = weather_df2, aes(x = r.squared)) + geom_density()
 log_graph = ggplot(data = weather_df2, aes(x = log)) + geom_density()
 ```
-The distribution of the r-hat squared estimate roughly shows a bell-curved shape with a peak around 0.91. The distribution of the log estimate also shows a bell-curved shape with a peak around 2.01.
+
+The distribution of the r^2 estimate roughly shows a bell-curved shape with a peak around 0.91. The distribution of the log estimate also shows a bell-curved shape with a peak around 2.01.
 
 ### identify quantiles and provide a 95% confidence interval for the estimates
 ```{r}
